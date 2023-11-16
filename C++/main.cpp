@@ -56,7 +56,7 @@ int main(int argc,char *argv[])
     const int m=6;
     const int cap=100000;
    //  const double cap = numeric_limits<double>::infinity();
-    const string path = "unitigs";
+    const string path = "../unitigs";
 
     // End of parameters
 
@@ -117,16 +117,16 @@ int main(int argc,char *argv[])
          {
             /* C'est le premier fichier qu'on traite */
 
-            if (!filesystem::is_directory("tmp") || !filesystem::exists("tmp")) 
+            if (!filesystem::is_directory("../tmp") || !filesystem::exists("../tmp")) 
             { // Check if tmp folder exists
-               filesystem::create_directory("tmp"); // create tmp folder
+               filesystem::create_directory("../tmp"); // create tmp folder
             }
 
             // On crée un fichier par minimizer
 
             for (auto x:minimizerTable)
             {
-                saveKmerCountMap(minimizerTable[x.first],"tmp/"+x.first+".txt",countToClasses);
+                saveKmerCountMap(minimizerTable[x.first],"../tmp/"+x.first+".txt",countToClasses);
             }
 
             // On crée les classes globales
@@ -158,7 +158,7 @@ int main(int argc,char *argv[])
             {
                // on parcoure chaque minimizer local
 
-               if (!filesystem::exists("tmp/"+x.first+".txt"))
+               if (!filesystem::exists("../tmp/"+x.first+".txt"))
                {
                   // le minimizer n'a pas encore été vu
 
@@ -194,7 +194,7 @@ int main(int argc,char *argv[])
                      newKmerCount++;
                   }
 
-                  saveKmerClassMap(kmerClassMap,"tmp/"+x.first+".txt");
+                  saveKmerClassMap(kmerClassMap,"../tmp/"+x.first+".txt");
                }
                else
                {
@@ -202,7 +202,7 @@ int main(int argc,char *argv[])
 
                   // on charge en mémoire le fichier du minimizer
                   kmer_class_map kmerClassMap;
-                  readMinimizerFile("tmp/"+x.first+".txt",kmerClassMap);
+                  readMinimizerFile("../tmp/"+x.first+".txt",kmerClassMap);
 
                   // on parcoure les kmer locaux
                   for (auto y:minimizerTable[x.first])
@@ -269,7 +269,7 @@ int main(int argc,char *argv[])
                   }
 
                   // on réenregistre le fichier du minimizer
-                  saveKmerClassMap(kmerClassMap,"tmp/"+x.first+".txt");
+                  saveKmerClassMap(kmerClassMap,"../tmp/"+x.first+".txt");
 
                }
             }
@@ -292,7 +292,7 @@ int main(int argc,char *argv[])
     auto t2 = high_resolution_clock::now(); // End measuring time
     std::chrono::duration<float> fs =t2 - t1;
 
-    saveGlobalClasses("tmp/0_final_classes.txt",globalClassesKmerAbundance,globalClassesCountVectors);
+    saveGlobalClasses("../tmp/0_final_classes.txt",globalClassesKmerAbundance,globalClassesCountVectors);
 
     cout << "Done in " << blue << fs.count() << def << "s" << endl;
 
