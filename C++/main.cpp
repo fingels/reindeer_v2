@@ -18,6 +18,8 @@ TODO : benchmark
 
 TODO : adapter à ggcat
 
+TODO : paramètres optionels dans le main + param display et folder
+
 */
 
 /*
@@ -45,18 +47,31 @@ int main(int argc,char *argv[])
     SpaceSeparator facet(1); //1 - don't delete when done
     cout.imbue(std::locale(std::locale(), &facet));
 
-
     // Parameters
 
-   //  const int k = stoi(argv[1]);
-   //  const int m = stoi(argv[2]);
-   //  const int cap = stoi(argv[3]);
+   int k;
+   int m;
+   double cap;
+   const string path = "../unitigs";
+   const bool display=true;
 
-    const int k=21;
-    const int m=6;
-    const int cap=100000;
-   //  const double cap = numeric_limits<double>::infinity();
-    const string path = "../unitigs";
+
+   if (argc <3)
+   {
+      cout << "Usage : " << argv[0] << " k m (cap)" << endl;
+   }
+   else if (argc == 2)
+   {
+    k = stoi(argv[1]);
+    m = stoi(argv[2]);
+    cap = numeric_limits<double>::infinity();
+   }
+   else{
+    k = stoi(argv[1]);
+    m = stoi(argv[2]);
+    cap = stoi(argv[3]);
+   }
+
 
     // End of parameters
 
@@ -65,11 +80,14 @@ int main(int argc,char *argv[])
     unordered_map<int,vector<double>> globalClassesCountVectors; // classes globables -> vecteurs de comptage
     int globalClassIndex=0;
 
-    cout << "Parameters" << endl;
-    cout << "\tk-mer size: " << blue << k << def << endl;
-    cout << "\tminimizer size: " << blue << m << def << endl;
-    cout << "\tMax number of strings read on each file: " << blue << cap << def << endl;
-    cout << "**************" << endl;
+    if (display){
+      cout << "Parameters" << endl;
+      cout << "\tk-mer size: " << blue << k << def << endl;
+      cout << "\tminimizer size: " << blue << m << def << endl;
+      cout << "\tMax number of strings read on each file: " << blue << cap << def << endl;
+      cout << "**************" << endl;
+    }
+
 
     auto t1 = high_resolution_clock::now(); // Start measuring time
 
@@ -77,7 +95,9 @@ int main(int argc,char *argv[])
     {
         nbFile++;
 
-        cout << "Processing file\t" << red << entry.path() << def << endl;
+       if (display){
+         cout << "Processing file\t" << red << entry.path() << def << endl; }
+        
 
          // ouvrir fichier
 
@@ -87,18 +107,22 @@ int main(int argc,char *argv[])
 
          readFasta(entry.path(), cap, unitigs, counts);
 
-         cout << "\tSuccessfully read file." << endl;
+         if (display){
+         cout << "\tSuccessfully read file." << endl;}
 
         // on récupère les kmer du fichier et leurs valeurs de comptage
          unitigsToKmersWithCounts(k,m,unitigs,counts,minimizerTable);
 
          int nbKmer = 0;
-         for (auto x:minimizerTable)
-         {
-            nbKmer += minimizerTable[x.first].size();
-         }
 
-         cout << "\tFound " << blue << minimizerTable.size() << def << " minimizers for a total of " << blue << nbKmer << def << " k-mers." << endl;
+         if (display){
+            for (auto x:minimizerTable)
+            {
+               nbKmer += minimizerTable[x.first].size();
+            }
+
+            cout << "\tFound " << blue << minimizerTable.size() << def << " minimizers for a total of " << blue << nbKmer << def << " k-mers." << endl;
+         }
 
          // on associe des classes d'équivalence locales aux comptages
 
@@ -111,7 +135,10 @@ int main(int argc,char *argv[])
             assignEquivalenceClasses(minimizerTable[x.first],countToClasses,classesKmerAbundance, classesToCounts);
          }
 
-         cout << "\tFound " << blue << classesToCounts.size() << def << " classes of counts." << endl;
+         if (display){
+            cout << "\tFound " << blue << classesToCounts.size() << def << " classes of counts." << endl;
+         }
+         
 
          if (nbFile==1)
          {
@@ -137,7 +164,9 @@ int main(int argc,char *argv[])
                globalClassIndex++;
             }
 
-            cout << "Successfully created " << blue << minimizerTable.size() << def << " minimizers files and registered " << blue << nbKmer << def << " k-mers." << endl;
+            if (display){
+               cout << "Successfully created " << blue << minimizerTable.size() << def << " minimizers files and registered " << blue << nbKmer << def << " k-mers." << endl;
+            }
 
          }
          else
@@ -275,12 +304,14 @@ int main(int argc,char *argv[])
             }
 
             // saveGlobalClasses("tmp/0_final_classes.txt",globalClassesKmerAbundance,globalClassesCountVectors);
-            cout << "Successfully updated classes and k-mers, creating " << blue << newFileCount << def << " new minimizers files and registering " << blue << newKmerCount << def << " new k-mers." << endl;
-
+            if (display){
+               cout << "Successfully updated classes and k-mers, creating " << blue << newFileCount << def << " new minimizers files and registering " << blue << newKmerCount << def << " new k-mers." << endl;
+            }
          }
          
-
+         if (display){
         cout << "**************" << endl;
+         }
 
     }
         
@@ -294,7 +325,9 @@ int main(int argc,char *argv[])
 
     saveGlobalClasses("../tmp/0_final_classes.txt",globalClassesKmerAbundance,globalClassesCountVectors);
 
-    cout << "Done in " << blue << fs.count() << def << "s" << endl;
+    if(display){
+      cout << "Done in " << blue << fs.count() << def << "s" << endl;
+    }
 
     return 0;
 }
