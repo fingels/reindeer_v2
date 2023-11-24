@@ -13,27 +13,6 @@
 
 using namespace std;
 
-/*
-TODO : benchmark
-
-TODO : adapter à ggcat
-
-TODO : paramètres optionels dans le main + param display et folder
-
-*/
-
-/*
-En fonction de la valeur de cap, comparaison temps Python, C++
-cap            Python   C++
-100 000           9s       8s
-300 000         100s     115s
-500 000         285s     468s
-1 000 000       792s    1107s
-10 000 000     1064s    1360s
-100 000 000    1067s
-all            1164s     981s
-*/
-
 int main(int argc,char *argv[])
 {
     Color::Modifier blue(Color::FG_BLUE);
