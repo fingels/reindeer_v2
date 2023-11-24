@@ -16,7 +16,7 @@ clean:
 	rm -f *.o main
 
 benchmark:
-# exemple
+# exemple, il faudra faire pareil avec Python
 	rm -rf ../tmp
 	/usr/bin/time ./main 21 6 10
 	rm -rf ../tmp
