@@ -41,7 +41,7 @@ typedef std::unordered_map<std::string, int> kmer_class_map;
 /*
 Lit le fichier FASTA `fileName`, et extrait les `cap` premiers unitigs et leur valeur de comptage, stockées dans les tableaux `unitigs` et `counts`, respectivement.
 */
-void readFasta(const std::string fileName, const int cap,std::vector<std::string> &unitigs, std::vector<double> &counts);
+void readFasta(const std::string fileName, const double cap,std::vector<std::string> &unitigs, std::vector<double> &counts);
 
 /*
 TODO

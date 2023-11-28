@@ -3,7 +3,7 @@ OBJ = $(SRC:.cpp=.o)
 
 main: $(OBJ)
 	g++ -o $@ $^ -O3 -g
-
+	
 main.o: main.cpp
 	g++ -o main.o -c main.cpp -O3 -g
 

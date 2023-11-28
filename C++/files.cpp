@@ -2,7 +2,7 @@
 #include "files.hpp"
 
 
-void readFasta(const std::string fileName, const int cap, std::vector<std::string> &unitigs, std::vector<double> &counts)
+void readFasta(const std::string fileName, const double cap, std::vector<std::string> &unitigs, std::vector<double> &counts)
 {
     std::ifstream myFile(fileName);  //Ouverture d'un fichier en lecture
 
