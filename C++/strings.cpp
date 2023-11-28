@@ -1,9 +1,6 @@
 #include "strings.hpp"
 
 
-/*
-std::stoull
-*/
 uint64_t xorshift ( uint64_t x ) { 
 x = ( ( x >> 32 ) ^ x ) * 0xCFEE444D8B59A89B;
 x = ( ( x >> 32 ) ^ x ) * 0xCFEE444D8B59A89B;
@@ -11,7 +8,37 @@ x = ( ( x >> 32 ) ^ x );
 return x;
 }
 
+std::string stringToBinaryString(std::string const &str)
+{
+    std::string cible="";
 
+    for(int i=0;i<str.size();i++){
+        switch (str[i])
+        {
+        case 'A':
+            cible+= "00";
+            break;
+        
+        case 'C':
+            cible+="01";
+            break;
+        
+        case 'G':
+            cible+="10";
+            break;
+
+        case 'T':
+            cible+="11";
+            break;
+        
+        default:
+            std::cout << "String should contain only A,T,C,G characters" << std::endl;
+            break;
+        }
+    }
+
+    return cible;
+}
 
 char complement(const char in)
 { return ((in & 2) ? '\x8a' - in : '\x95' - in); }
@@ -32,45 +59,34 @@ std::string reverseComplement(std::string const &kmer, int n)
     return reverseComp;
 }
 
-int findMinimizer(std::string const &kmer, int m)
+std::string findMinimizer(std::string const &kmer, int m)
 {
 
     /*
-    TODO: hasher le canonique de la fenêtre ?
-
-    canoniser le k-mer
-    canoniser les m-mer
-    hasher
-    prendre le plus petit
-
+    kmer is assumed to be canonical
     */
 
     int n=kmer.size();
     if (n<m)
     {
         std::cout << "ERROR: string is too short" << std::endl;
-        return -1;
+        return "";
     }
     else
     {
-        int indexMin=0;
-        for (int i=0;i<n-m+1;i++)
+        std::string minimizer = canonical(kmer.substr(0,m));
+        uint64_t valMin = xorshift(std::stoull(stringToBinaryString(minimizer)));
+
+        for (int i=1;i<n-m+1;i++)
         {
-            // on parcoure kmer[i:i+m] tant que les lettres coïncident avec avec kmer[indexMin:indexMin+m]
-            for (int j=0;j<m;j++)
-            {
-                if (kmer[i+j]<kmer[indexMin+j])
-                {
-                    indexMin=i;
-                    break;
-                }
-                else if (kmer[indexMin+j]<kmer[i+j])
-                {
-                    break;
-                }
+            std::string candidate = canonical(kmer.substr(i,m));
+            uint64_t valCandidate = xorshift(std::stoull(stringToBinaryString(candidate)));
+            
+            if (valCandidate<valMin){
+                minimizer=candidate;
             }
         }
-        return indexMin;
+        return minimizer;
     }
 }
 

@@ -10,6 +10,11 @@ TODO
 uint64_t xorshift ( uint64_t x );
 
 /*
+Convertit une chaîne de caractère en chaîne de caractère binaire
+*/
+std::string stringToBinaryString(std::string const& str);
+
+/*
 Renvoie le complément A<->T et C<->G, reproduit de https://stackoverflow.com/a/15151947/11253795
 WARNING: marche uniquement avec A,T,C,G
 */
@@ -24,7 +29,7 @@ std::string reverseComplement(std::string const& kmer,int n=NULL);
 /*
 Retourne l'index de départ de la plus petite (au sens lexicographique) sous-chaîne de taille m
 */
-int findMinimizer(std::string const& kmer, int m);
+std::string findMinimizer(std::string const& kmer, int m);
 
 /*
 Renvoie le plus petit mot (au sens lexicographique) entre un kmer et son reverse complement

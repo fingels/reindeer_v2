@@ -52,28 +52,25 @@ void unitigsToKmersWithCounts( const int k, const int m,std::vector<std::string>
             std::string kmer = canonical(unitig.substr(j,k));
             
             // on calcule le minimiseur
-            int indexMinimizer = findMinimizer(kmer,m);
-            std::string minimizer = kmer.substr(indexMinimizer,m);
-            std::string remainder = kmer.substr(0,indexMinimizer)+'@'+kmer.substr(indexMinimizer+m);
+            std::string minimizer = findMinimizer(kmer,m);
 
-
-            // on range (minimizer, remainder) dans une table
+            // on range (minimizer, kmer) dans une table
 
             if (minimizerTable.count(minimizer) ==0)
             {
                 // Le minimizer n'a jamais été vu
-                minimizerTable[minimizer][remainder] = count;
+                minimizerTable[minimizer][kmer] = count;
             }
             else
             {
-                if (minimizerTable[minimizer].count(remainder) ==0)
+                if (minimizerTable[minimizer].count(kmer) ==0)
                 {
                     // Le kmer n'a jamais été vu
-                    minimizerTable[minimizer][remainder] = count;
+                    minimizerTable[minimizer][kmer] = count;
                 }
                 else
                 {
-                    minimizerTable[minimizer][remainder]+= count;
+                    minimizerTable[minimizer][kmer]+= count;
                 }
             }
         }  
