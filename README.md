@@ -26,5 +26,5 @@ In case of successive runs, delete the `tmp` folder before running the next one.
 - Performance benchmark
 - Adapt to GGCAT
 - Connect with KMTricks
-- Add documentation to functions
 - Serialisation unordered_map (librairie cereal) ?
+- Instead of adding files one by one sequentially, use a divide and conquer method. Highly parallelizable. (but how ?). Drawback: needs to implement merge structures.

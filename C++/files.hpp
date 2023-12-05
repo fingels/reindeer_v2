@@ -39,38 +39,49 @@ typedef std::unordered_map<std::string,kmer_count_map> minimizer_map;
 typedef std::unordered_map<std::string, int> kmer_class_map;
 
 /*
-Lit le fichier FASTA `fileName`, et extrait les `cap` premiers unitigs et leur valeur de comptage, stockées dans les tableaux `unitigs` et `counts`, respectivement.
+Read FASTA file `fileName`, and extract the first `cap` unitigs and their counting value, respectively stored in tables `unitigs` and `counts`.
 */
 void readFasta(const std::string fileName, const double cap,std::vector<std::string> &unitigs, std::vector<double> &counts);
 
 /*
-TODO
+Provided a list of `unitigs` and their respective `counts` :
+1. Split each unitig in k-mers
+2. Compute for each k-mer its minimizer (of size m)
+3. Store in a nested unordered map : minimizer -> k-mer -> count
+
+Note that it is not assumed that k-mers appear only once in the unitigs: the same k-mer can be found in different unitigs and the count value will be updated accordingly
 */
 void unitigsToKmersWithCounts(const int k, const int m,std::vector<std::string> &unitigs, std::vector<double> &counts, minimizer_map &minimizerTable);
 
 /*
-TODO
+Provided an unordered map k-mers -> count, for each k-mer:
+1. If the associated count has never been seen:
+   a. create a new class of count 
+   b. map in `countToClasses` : count -> class
+   c. map in `classesToCount` : class -> count
+2. Add 1 to the abundance of the class associated to the count in `classesKmerAbundance`
 */
 void assignEquivalenceClasses(const kmer_count_map &kmerMap,std::unordered_map<double,int> &countToClasses,std::unordered_map<int,int> &classesKmerAbundance, std::unordered_map<int,double> &classesToCounts);
 
 /*
-TODO
+Create a file `fileName` , where each line has format `k-mer;class of count`
 */
 void saveKmerCountMap(const kmer_count_map &kmerMap, const std::string fileName, std::unordered_map<double,int> &countToClasses);
 
 
 /*
-TODO
+Create a file `fileName`, where each line (but the first) has format `class ID \t number of k-mers with this class ID \t vector of abundance associated to the class`.
+The first line gives the number of classes in the file.
 */
 void saveGlobalClasses(const std::string fileName, std::unordered_map<int,int> &globalClassesKmerAbundance, std::unordered_map<int,std::vector<double>> &globalClassesCountVectors);
 
 /*
-TODO
+Read a file saved with `saveKmerCountMap` or `saveKmerClassMap` and create a unordered map k-mer -> class of count
 */
 void readMinimizerFile(const std::string fileName, kmer_class_map &kmerClassMap);
 
 /*
-TODO
+Create a file `fileName`, where each line has format `k-mer;class of count`
 */
 void saveKmerClassMap(const kmer_class_map &kmerClassMap, std::string fileName);
 
