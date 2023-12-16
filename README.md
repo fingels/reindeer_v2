@@ -1,3 +1,5 @@
+This is a work-in-progress repository for version 2 of the Reindeer software (the first version can be found here: https://github.com/kamimrcht/REINDEER).
+
 # Dependencies
 
 For Google performance analysis:   
@@ -22,9 +24,8 @@ where `folder` containing all FASTA files to be read (and nothing else), `k` the
 In case of successive runs, delete the `tmp` folder before running the next one. 
 
 # TODO
-
 - Performance benchmark
 - Adapt to GGCAT
 - Connect with KMTricks
 - Serialisation unordered_map (librairie cereal) ?
-- Instead of adding files one by one sequentially, use a divide and conquer method. Highly parallelizable. (but how ?). Drawback: needs to implement merge structures.
+- Instead of adding files one by one sequentially, use a divide and conquer method. Parallelizable. Needs to implement merge structures.
