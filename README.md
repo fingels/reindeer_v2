@@ -23,7 +23,7 @@ where `folder` containing all FASTA files to be read (and nothing else), `k` the
 **Important:** 
 In case of successive runs, delete the `tmp` folder before running the next one. 
 
-# TODO
+# Roadmap / To Do List
 - Performance benchmark
 - Adapt to GGCAT
 - Connect with KMTricks
