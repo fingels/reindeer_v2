@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
    string folder;
    app.add_option("-f,--folder",folder,"Folder where to find raw files");
 
-   bool display = true;
-   app.add_option("-d,--display",display,"Whether or not display executions comments");
+   bool verbose = true;
+   app.add_option("-v,--verbose",verbose,"Whether or not display executions comments");
 
    CLI11_PARSE(app, argc, argv);
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
    unordered_map<int, vector<double>> globalClassesCountVectors; // classes globables -> vecteurs de comptage
    int globalClassIndex = 0;
 
-   if (display)
+   if (verbose)
    {
       cout << "Parameters" << endl;
       cout << "\tk-mer size: " << blue << k << def << endl;
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
    {
       nbFile++;
 
-      if (display)
+      if (verbose)
       {
          cout << "Processing file\t" << red << entry.path() << def << endl;
       }
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
       readFasta(entry.path(), cap, unitigs, counts);
 
-      if (display)
+      if (verbose)
       {
          cout << "\tSuccessfully read file." << endl;
       }
@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 
       int nbKmer = 0;
 
-      if (display)
+      if (verbose)
       {
          for (auto x : minimizerTable)
          {
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
          assignEquivalenceClasses(minimizerTable[x.first], countToClasses, classesKmerAbundance, classesToCounts);
       }
 
-      if (display)
+      if (verbose)
       {
          cout << "\tFound " << blue << classesToCounts.size() << def << " classes of counts." << endl;
       }
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
             globalClassIndex++;
          }
 
-         if (display)
+         if (verbose)
          {
             cout << "Successfully created " << blue << minimizerTable.size() << def << " minimizers files and registered " << blue << nbKmer << def << " k-mers." << endl;
          }
@@ -282,13 +282,13 @@ int main(int argc, char *argv[])
          }
 
          // saveGlobalClasses("tmp/0_final_classes.txt",globalClassesKmerAbundance,globalClassesCountVectors);
-         if (display)
+         if (verbose)
          {
             cout << "Successfully updated classes and k-mers, creating " << blue << newFileCount << def << " new minimizers files and registering " << blue << newKmerCount << def << " new k-mers." << endl;
          }
       }
 
-      if (display)
+      if (verbose)
       {
          cout << "**************" << endl;
       }
@@ -303,7 +303,7 @@ int main(int argc, char *argv[])
 
    saveGlobalClasses("../tmp/0_final_classes.txt", globalClassesKmerAbundance, globalClassesCountVectors);
 
-   if (display)
+   if (verbose)
    {
       cout << "Done in " << blue << fs.count() << def << "s" << endl;
    }

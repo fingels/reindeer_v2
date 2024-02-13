@@ -23,9 +23,10 @@ where `folder` containing all FASTA files to be read (and nothing else), `k` the
 **Important:** 
 In case of successive runs, delete the `tmp` folder before running the next one. 
 
-# TODO
+# Roadmap / Whishlist / To Do List
 - Performance benchmark
-- Adapt to GGCAT
-- Connect with KMTricks
-- Serialisation unordered_map (librairie cereal) ?
+- Adapt to GGCAT and connect with KMTricks
+- Serialisation unordered_map (cereal library) ?
 - Instead of adding files one by one sequentially, use a divide and conquer method. Parallelizable. Needs to implement merge structures.
+- Queries that excludes some files
+- Add CMake 
