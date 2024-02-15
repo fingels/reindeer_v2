@@ -15,13 +15,13 @@ clean:
 
 run:
 	rm -rf ../tmp
-	./main -f ../unitigs -k 21 -m 10
+	./main -f ../../unitigs -k 21 -m 10 -c 10
  
  benchmark:
 # exemple, il faudra faire pareil avec Python
 	rm -rf ../tmp
-	/usr/bin/time ./main -f ../unitigs -k 21 -m 6 -c 10
+	/usr/bin/time ./main -f ../../unitigs -k 21 -m 6 -c 10
 	rm -rf ../tmp
-	/usr/bin/time ./main -f ../unitigs -k 21 -m 6 -c 100
+	/usr/bin/time ./main -f ../../unitigs -k 21 -m 6 -c 100
 	rm -rf ../tmp
-	/usr/bin/time ./main -f ../unitigs -k 21 -m 6 -c 1000
+	/usr/bin/time ./main -f ../../unitigs -k 21 -m 6 -c 1000

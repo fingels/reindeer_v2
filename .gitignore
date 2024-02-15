@@ -5,14 +5,14 @@
 /venv/
 /.idea/
 /.vscode/
-/tmp/
 all_kmers_python.txt
 benchmark.txt
 results-cpu.pdf
 google perf.txt
-/C++_prototype_1/results.cpu
-/C++_prototype_1/*.o
-/C++_prototype_1/-O3
-/C++_prototype_1/main
+/Prototype 1/tmp/
+/Prototype 1/C++/results.cpu
+/Prototype 1/C++/*.o
+/Prototype 1/C++/-O3
+/Prototype 1/C++/main
 /kmtricks/
 /ggcat/
