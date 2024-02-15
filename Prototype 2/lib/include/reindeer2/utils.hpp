@@ -6,6 +6,10 @@
 #include <string>
 #include <cstddef>
 
+/** @file utils.hpp
+ *  @defgroup utils
+ * */
+
 class SpaceSeparator: public std::numpunct<char> // https://stackoverflow.com/a/2648663/11253795
 {
 public:
@@ -37,8 +41,9 @@ namespace Color { // https://stackoverflow.com/a/17469726/11253795
     };
 }
 
-/*
-Hash function on unsigned long long int
+/**
+* @brief Hash function for unsigned long long int
+* @ingroup utils
 */
 uint64_t xorshift ( uint64_t x );
 

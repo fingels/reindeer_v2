@@ -3,6 +3,7 @@ project(REINDEER_2 VERSION 0.0.1 LANGUAGES CXX)
 
 option(REINDEER_2_PORTABLE "Portable x86-64 build" OFF)
 option(REINDEER_2_ERROR "Turn warning into errors." OFF)
+option(REINDEER_2_DOCS "Add documentation target." ON)
 
 add_library(build_type_flags INTERFACE)
 target_compile_options(build_type_flags INTERFACE
@@ -25,3 +26,7 @@ target_compile_options(warning_flags INTERFACE
 
 add_subdirectory(lib)
 add_subdirectory(app)
+
+if (REINDEER_2_DOCS)
+  add_subdirectory(doc)
+endif()
