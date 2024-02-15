@@ -1,11 +1,6 @@
 This is a work-in-progress repository for version 2 of the Reindeer software (the first version can be found here: https://github.com/kamimrcht/REINDEER).
 
-# Dependencies
 
-For Cmake:
-```
-sudo apt-get -y install cmake
-```
 
 # Usage
 
