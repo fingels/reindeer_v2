@@ -212,14 +212,14 @@ HTML_FILE_EXTENSION    = .html
 HTML_HEADER            = @CMAKE_SOURCE_DIR@/doc/Doxygen/header.html
 HTML_FOOTER            =
 HTML_STYLESHEET        =
-HTML_EXTRA_STYLESHEET  = @CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome.css \
-                         @CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
-                         @CMAKE_SOURCE_DIR@/doc/Doxygen/custom.css
+HTML_EXTRA_STYLESHEET  = #@CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome.css \
+                         #@CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
+                         #@CMAKE_SOURCE_DIR@/doc/Doxygen/custom.css
 
-HTML_EXTRA_FILES       = @CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js \
-                         @CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js \
-                         @CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
-                         @CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-paragraph-link.js
+HTML_EXTRA_FILES       = #@CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js \
+                         #@CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js \
+                         #@CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
+                         #@CMAKE_SOURCE_DIR@/external/doxygen-awesome-css/doxygen-awesome-paragraph-link.js
 HTML_COLORSTYLE_HUE    = 359
 HTML_COLORSTYLE_SAT    = 9
 HTML_COLORSTYLE_GAMMA  = 87

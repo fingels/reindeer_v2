@@ -9,11 +9,11 @@ all_kmers_python.txt
 benchmark.txt
 results-cpu.pdf
 google perf.txt
-/Prototype 1/tmp/
-/Prototype 1/C++/results.cpu
-/Prototype 1/C++/*.o
-/Prototype 1/C++/-O3
-/Prototype 1/C++/main
+/Prototype_1/tmp/
+/Prototype_1/C++/results.cpu
+/Prototype_1/C++/*.o
+/Prototype_1/C++/-O3
+/Prototype_1/C++/main
 /kmtricks/
 /ggcat/
-/Prototype 2/build
+/Prototype_2/build
