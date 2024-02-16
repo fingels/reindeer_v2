@@ -5,6 +5,11 @@
 #include <iostream>
 #include <reindeer2/utils.hpp>
 
+/** @file strings.hpp
+ *  @defgroup strings
+ *  @author Florian Ingels
+ * */
+
 
 /*
 Convert a ACTG string into a binary string (A = 00 / C =01 / G = 10 / T = 11)

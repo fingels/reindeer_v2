@@ -8,9 +8,17 @@
 
 /** @file utils.hpp
  *  @defgroup utils
+ *  @author Florian Ingels
  * */
 
-class SpaceSeparator: public std::numpunct<char> // https://stackoverflow.com/a/2648663/11253795
+
+
+/**
+ * @ingroup utils
+ * @brief Allows to display large numbers by seperating groups of 3 numbers
+ * @remark Borrowed from https://stackoverflow.com/a/2648663/11253795
+*/
+class SpaceSeparator: public std::numpunct<char>
 {
 public:
     SpaceSeparator(std::size_t refs): std::numpunct<char>(refs) {}
@@ -19,7 +27,13 @@ protected:
     std::string do_grouping() const { return "\03"; }
 };
 
-namespace Color { // https://stackoverflow.com/a/17469726/11253795
+
+/**
+ * @ingroup utils
+ * @brief Allows to output colored text
+ * @remark Borrowed from https://stackoverflow.com/a/17469726/11253795
+*/
+namespace Color {
     enum Code {
         FG_RED      = 31,
         FG_GREEN    = 32,
