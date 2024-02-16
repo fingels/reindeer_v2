@@ -35,14 +35,11 @@ std::string stringToBinaryString(std::string const &str)
 char complement(const char in)
 { return ((in & 2) ? '\x8a' - in : '\x95' - in); }
 
-std::string reverseComplement(std::string const &kmer, int n)
+std::string reverseComplement(std::string const &kmer)
 {
     std::string reverseComp;
 
-    if (n==NULL)
-    {
-        n = kmer.size();
-    }
+    int n = kmer.size();
 
     for (int j=0; j<n; j++)
     {
@@ -53,12 +50,9 @@ std::string reverseComplement(std::string const &kmer, int n)
 
 std::string findMinimizer(std::string const &kmer, int m)
 {
-
-    /*
-    kmer is assumed to be canonical
-    */
-
+    
     int n=kmer.size();
+
     if (n<m)
     {
         std::cout << "ERROR: string is too short" << std::endl;
