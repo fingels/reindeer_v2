@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <sstream>
 #include <reindeer2/utils.hpp>
 
 /** @file strings.hpp
@@ -43,5 +45,13 @@ std::string findMinimizer(std::string const& kmer, int m);
 Returns the smallest lexicographic word between a k-mer and its reverse complement
 */
 std::string canonical(std::string const& kmer);
+
+
+/**
+ * @brief Split a string according to the chosen delimiter
+ * @ingroup strings
+ * @remark Borrowed from https://stackoverflow.com/a/46931770/11253795
+*/
+std::vector<std::string> split(const std::string &s, char delim);
 
 #endif // STRINGS_INCLUDED

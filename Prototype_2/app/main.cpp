@@ -2,6 +2,7 @@
 
 #include <reindeer2/strings.hpp>
 #include <reindeer2/utils.hpp>
+#include <reindeer2/process_input.hpp>
 
 
 using namespace std;
@@ -20,6 +21,9 @@ int main() {
     
     // Main
 
-    cout << blue << "Hello " << red << "World!" << def << endl;
+    string fileName="../../kmtricks/matrix_0.csv";
+
+    read_kmtricks_csv(fileName);
+
     return 0;
 }

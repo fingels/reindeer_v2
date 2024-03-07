@@ -91,10 +91,21 @@ std::string canonical(std::string const& kmer)
         else if (complement(kmer[n-i-1])<kmer[i])
         {
             // il faut retourner le reverse complement
-            return reverseComplement(kmer,n);
+            return reverseComplement(kmer);
         }
     }
     // ce cas de figure ne peut se produire que si kmer==reverseComplement(kmer), ce qui nécessite k pair
     return kmer;
 }
 
+std::vector<std::string> split (const std::string &s, char delim) {
+    std::vector<std::string> result;
+    std::stringstream ss (s);
+    std::string item;
+
+    while (getline (ss, item, delim)) {
+        result.push_back (item);
+    }
+
+    return result;
+}
